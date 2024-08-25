@@ -1,0 +1,146 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 40,
+    "width": 1910,
+    "margin": "3, 0, 2, 0",
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "cpu", "memory", "temperature", "disk"],
+    "modules-center": ["mpd"],
+    "modules-right": ["tray", "backlight", "idle_inhibitor", "pulseaudio", "network", "battery", "clock", "custom/power"],
+    "hyprland/workspaces": {
+    	"all-outputs": true,	
+	"persistent_workspaces": { "*": 5 },
+	"format": "{icon}",
+        "format-icons": {
+            "1": "󰈹",
+            "2": "󰗀",
+            "3": "󰊤",
+            "4": "♣",
+            "5": "₿",
+            "6": "⟠",
+            "7": "₮",
+            "8": "Ð",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+
+    "custom/launcher": {
+        "format":"⋏",
+        "on-click": "exec rofi -show drun #-c ~/.config/wofi/config -I",
+        "tooltip": false,
+    },
+
+    "hyprland/window": {
+        "max-length": 25,
+        "tooltip": false
+    },
+
+    "clock": {
+        "interval": 1,
+        "locale": "C",
+        "format": "{:%I:%M %p}",
+        "format-alt": " {:%a,%b %d}" // Icon: calendar-alt
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10,
+        "on-click": "alacritty -e 'htop'"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {used:0.2f}GB",
+
+        "max-length": 10,
+        "tooltip": false,
+        "warning": 70,
+        "critical": 90
+    },
+
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-charging": "⚡ {capacity}%",
+        "format-plugged": "  {capacity}%",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""],
+	"tooltip-format": "Capacity: {capacity}%"
+        //"format-alt": "{time}",
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}° ",
+        "format": "{temperatureC}° "
+    },
+
+    "network": {
+        "format": "{icon}",
+        "format-alt": "{ipaddr}/{cidr} {icon}",
+        "format-alt-click": "click-right",
+        "format-wifi": "{icon}",
+        "format-icons": {
+            "wifi": [""],
+            "ethernet": [""],
+            "disconnected": [""]
+        },
+        "on-click": "alacritty -e 'nmtui'",
+        "tooltip-format": "{ifname}: {ipaddr}",
+    },
+
+    "pulseaudio": {
+      "scroll-step": 0.5, // %, can be a float
+      "format": "{icon} {volume}% {format_source}",
+      "format-bluetooth": "{icon} {volume}% {format_source}",
+      "format-bluetooth-muted": " {format_source}",
+      "format-muted": "  {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "headset": "🎧",
+        "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃝", "󰃞"],
+        "on-scroll-down": "brightnessctl -c backlight set 1%-",
+        "on-scroll-up": "brightnessctl -c backlight set +1%"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons":{
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "tray": {
+        "icon-size": 15
+    },
+
+    "disk": {
+        "format": " {free}",
+	"on-click": "alacritty -e gdu"
+    },  
+
+    "custom/power": {
+        "format":"⏻",
+        "on-click": "exec wlogout", 
+        "tooltip": false,
+    },
+}
