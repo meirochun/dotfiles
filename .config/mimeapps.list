@@ -1,5 +1,0 @@
-[Default Applications]
-application/vnd.ms-publisher=notepad++.desktop
-
-[Added Associations]
-application/vnd.ms-publisher=org.kde.kwrite.desktop;rofi.desktop;notepad++.desktop;
